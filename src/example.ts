@@ -33,7 +33,7 @@ const MyHometask: IMyHometask = {
 // Типизация функций, используя Generic
 interface MyArray<T> {
   [N: number]: T;
-	reduce<T>(fn: (prevElem: T, curElem: T, index: number, array: T[]) => T) : T;
+  reduce<U>(fn: (prevElem: U, curElem: T, index: number, array: T[]) => U) : U;
 }
 
 const euros: MyArray<number> = [29.76, 41.85, 46.5];
