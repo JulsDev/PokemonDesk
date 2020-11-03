@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -46,10 +47,19 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: 'file-loader',
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        use: 'file-loader',
+      },
     ],
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
     }),

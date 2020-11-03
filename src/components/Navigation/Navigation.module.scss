@@ -1,0 +1,14 @@
+.nav__wrapper {
+  display: flex;
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__item {
+  margin-right: 25%;
+  &:last-child {
+    margin-right: 0;
+  }
+}
