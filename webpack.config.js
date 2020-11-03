@@ -4,58 +4,62 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
-  
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
 
   mode: NODE_ENV ? NODE_ENV : 'development',
 
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
 
-  output: {                                     
+  output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
 
   module: {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        use: ['ts-loader']
+        exclude: /node_modules/,
+        use: ['ts-loader'],
       },
       {
-        test: /\.(s*)css$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss$/,
         use: [
           'style-loader',
+          'css-modules-typescript-loader?module',
           {
             loader: 'css-loader',
             options: {
               modules: {
                 mode: 'local',
                 localIdentName: '[name]__[local]__[hash:base64:5]',
-                auto: /\.modules\.\w+$/i
-              }
-            }
+                auto: /\.module\.\w+$/i,
+              },
+            },
           },
-          'sass-loader'
-        ]
-      }
-    ]
+          'sass-loader',
+        ],
+      },
+    ],
   },
 
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html')
-    })
+      template: path.resolve(__dirname, 'public/index.html'),
+    }),
   ],
 
   devServer: {
     port: 3000,
     open: true,
-    hot: true
+    hot: true,
   },
 
-  devtool: 'source-map'
-
-}
+  devtool: 'source-map',
+};
