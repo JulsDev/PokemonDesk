@@ -1,0 +1,16 @@
+.footer__wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+  padding: 27px 0;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'karla-bolt', sans-serif;
+  font-size: 18px;
+}
