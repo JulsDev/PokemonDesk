@@ -2,22 +2,38 @@ import React from 'react';
 
 import s from './Navigation.module.scss';
 
+const menu = [
+  {
+    id: 1,
+    name: 'Home',
+    url: './',
+  },
+  {
+    id: 2,
+    name: 'Pokédex',
+    url: './',
+  },
+  {
+    id: 3,
+    name: 'Legendaries',
+    url: './',
+  },
+  {
+    id: 4,
+    name: 'Documentation',
+    url: './',
+  },
+];
+
 export default function Navigation() {
   return (
     <nav className={s.nav__wrapper}>
       <ul className={s.nav__list}>
-        <a href="./" className={s.nav__item}>
-          <li>Home</li>
-        </a>
-        <a href="./" className={s.nav__item}>
-          <li>Pokédex</li>
-        </a>
-        <a href="./" className={s.nav__item}>
-          <li>Legendaries</li>
-        </a>
-        <a href="./" className={s.nav__item}>
-          <li>Documentation</li>
-        </a>
+        {menu.map((item) => (
+          <a key={item.id} href={item.url} className={s.nav__item}>
+            <li>{item.name}</li>
+          </a>
+        ))}
       </ul>
     </nav>
   );

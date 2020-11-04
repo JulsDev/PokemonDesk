@@ -1,14 +1,41 @@
+@import '../../styles/variables';
+
 .nav__wrapper {
   display: flex;
+  width: 100%;
 }
 
 .nav__list {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .nav__item {
-  margin-right: 25%;
-  &:last-child {
-    margin-right: 0;
+  font-size: 22px;
+  line-height: 23px;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    height: 1px;
+    width: 1%;
+    background: $dark;
+    border: 1px solid $dark;
+    border-radius: 6px;
+    opacity: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: opacity, width ease-in-out 0.25s;
+  }
+
+  &:hover {
+    &:after {
+      width: 100%;
+      opacity: 1;
+    }
   }
 }
