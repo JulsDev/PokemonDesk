@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import s from './Navigation.module.scss';
 
@@ -11,17 +12,17 @@ const menu = [
   {
     id: 2,
     name: 'Pokédex',
-    url: './',
+    url: '/pokedex',
   },
   {
     id: 3,
     name: 'Legendaries',
-    url: './',
+    url: '/legendaries',
   },
   {
     id: 4,
     name: 'Documentation',
-    url: './',
+    url: '/documentation',
   },
 ];
 
@@ -30,9 +31,9 @@ export default function Navigation() {
     <nav className={s.nav__wrapper}>
       <ul className={s.nav__list}>
         {menu.map((item) => (
-          <a key={item.id} href={item.url} className={s.nav__item}>
+          <Link key={item.id} to={item.url} className={s.nav__item}>
             <li>{item.name}</li>
-          </a>
+          </Link>
         ))}
       </ul>
     </nav>
