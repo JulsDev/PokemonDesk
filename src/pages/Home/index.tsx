@@ -18,7 +18,9 @@ const HomePage = () => {
           <h2 className={hs.content__subtitle}>
             You can know the type of Pokemon, its strengths, disadvantages and abilities
           </h2>
-          <Button onClick={() => console.log('Click button')}>See pokemons</Button>
+          <Button onClick={() => console.log('Click button')} type="button" color="green" size="medium">
+            See pokemons
+          </Button>
         </div>
         <div className={hs.content__parallax}>
           <Parallax />

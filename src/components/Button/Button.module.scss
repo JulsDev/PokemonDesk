@@ -2,7 +2,6 @@
 
 .root {
   height: 66px;
-  background: $green;
   box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
   border-radius: 11px;
   cursor: pointer;
@@ -12,13 +11,41 @@
   font-family: Karla;
   font-style: normal;
   font-weight: bold;
-  font-size: 23px;
   line-height: 27px;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   &:active {
     box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
     padding-bottom: 6px;
   }
+}
+
+// color
+.green {
+  background: $greenBtn;
+}
+.yellow {
+  background: $yellowBtn;
+}
+
+// width
+.small {
+  width: 180px;
+  height: 51px;
+  font-size: 18px;
+}
+.medium {
+  width: 231px;
+  height: 66px;
+  font-size: 23px;
+}
+.large {
+  width: 251px;
+  height: 71px;
+  font-size: 25px;
+}
+.fluid {
+  width: 100%;
 }
