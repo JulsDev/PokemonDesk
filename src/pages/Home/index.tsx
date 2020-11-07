@@ -1,23 +1,24 @@
 import React from 'react';
 import cn from 'classnames';
 
+import Button from '../../components/Button';
+import Heading from '../../components/Heading';
 import Parallax from '../../components/Parallax';
 
 import as from '../../App.module.scss';
 import hs from './Home.module.scss';
-import Button from '../../components/Button';
 
 const HomePage = () => {
   return (
     <div className={hs.content__wrapper}>
       <div className={cn(as.container, hs.content__home)}>
         <div className={hs.content__text}>
-          <h1 className={hs.content__title}>
+          <Heading tag="h1" propsClassName={hs.content__title}>
             <strong>Find</strong> all your favorite <strong>Pokemon</strong>
-          </h1>
-          <h2 className={hs.content__subtitle}>
+          </Heading>
+          <Heading tag="h2" propsClassName={hs.content__subtitle}>
             You can know the type of Pokemon, its strengths, disadvantages and abilities
-          </h2>
+          </Heading>
           <Button onClick={() => console.log('Click button')} type="button" color="green" size="medium">
             See pokemons
           </Button>
