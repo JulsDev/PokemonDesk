@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -63,12 +64,25 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public/favicon.ico',
+          to: path.resolve(__dirname, 'dist'),
+        },
+        {
+          from: 'public/manifest.json',
+          to: path.resolve(__dirname, 'dist'),
+        },
+      ],
+    }),
   ],
 
   devServer: {
     port: 3000,
     open: true,
     hot: true,
+    historyApiFallback: true,
   },
 
   devtool: 'source-map',

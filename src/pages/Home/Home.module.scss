@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+.content__wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  min-height: calc(100vh - 114px);
+  padding-top: 114px;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.content__home {
+  display: flex;
+}
+
+.content__text {
+  max-width: 516px;
+}
+
+.content__title {
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 84px;
+  letter-spacing: 4px;
+  margin-bottom: 44px;
+}
+
+.content__subtitle {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 37px;
+  margin-bottom: 44px;
+}
+
+.content__parallax {
+  width: 50%;
+}
