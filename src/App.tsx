@@ -1,28 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useRoutes } from 'hookrouter';
 
-import s from './App.module.scss';
-
-import Header from './components/Header/Header';
-import HomePage from './pages/Home';
-import LegendariesPage from './pages/Legendaries/inndex';
-import PokedexPage from './pages/Pokedex';
-import Footer from './components/Footer/Footer';
+import routes from './routes';
+import ErrorPage from './pages/Error';
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <div className={s.wrapper}>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/pokedex" component={PokedexPage} />
-          <Route exact path="/legendaries" component={LegendariesPage} />
-        </Switch>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
+  const match = useRoutes(routes);
+
+  return match || <ErrorPage />;
 };
 
 export default App;

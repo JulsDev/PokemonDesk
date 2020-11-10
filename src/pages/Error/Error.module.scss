@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.errorPageWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: $danger;
+  min-height: 100vh;
+}
+
+.errTitle {
+  font-size: 32px;
+  font-weight: 600;
+}
+.errTitleColor {
+  color: $white;
+}
+
+.imagesBlock {
+  margin-bottom: 8%;
+}
+
+.teamRocketPic {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 690px;
+}
+
+.errorPic {
+  max-width: 1284px;
+  width: 100%;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

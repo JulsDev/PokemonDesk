@@ -1,4 +1,4 @@
-.content__wrapper {
+.contentWrapper {
   display: flex;
   height: 100%;
   width: 100%;
@@ -6,6 +6,18 @@
   padding-top: 114px;
 }
 
-.content__pokedex {
+.contentPokedex {
   display: flex;
+  flex-direction: column;
+}
+
+.contentTitle {
+  margin-bottom: 34px;
+  text-align: center;
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
