@@ -20,7 +20,7 @@ export const MENU: IGeneralMenu[] = [
   {
     title: 'Pokédex',
     url: '/pokedex',
-    component: () => <PokedexPage title="Pokedex" />,
+    component: () => <PokedexPage />,
   },
   {
     title: 'Legendaries',
