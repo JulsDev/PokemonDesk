@@ -5,12 +5,13 @@
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  padding-top: 122px;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
+  overflow: hidden;
 }
 
 .content__home {
   display: flex;
+  padding-top: 120px;
 }
 
 .content__text {
