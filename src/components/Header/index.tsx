@@ -8,7 +8,7 @@ import Navigation from '../Navigation/Navigation';
 
 import logoSrc from '../../assets/logo.png';
 
-export default function Header() {
+function Header() {
   return (
     <header className={s.header__wrapper}>
       <div className={cn(c.container, s.header__content)}>
@@ -20,3 +20,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default React.memo(Header);
