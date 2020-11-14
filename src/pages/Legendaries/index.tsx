@@ -3,8 +3,9 @@ import cn from 'classnames';
 
 import as from '../../App.module.scss';
 import ps from './Legendaries.module.scss';
-import Header from '../../components/Header';
+
 import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 
 interface LegendariesProps {
   title?: string;
@@ -13,12 +14,11 @@ interface LegendariesProps {
 const LegendariesPage: React.FC<LegendariesProps> = ({ title }) => {
   return (
     <>
-      <Header />
-      <div className={ps.content__wrapper}>
+      <Layout className={ps.content__wrapper}>
         <div className={cn(as.container)}>
           <strong>{title}</strong>
         </div>
-      </div>
+      </Layout>
       <Footer />
     </>
   );

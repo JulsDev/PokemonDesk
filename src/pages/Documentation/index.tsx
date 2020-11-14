@@ -4,8 +4,8 @@ import cn from 'classnames';
 import as from '../../App.module.scss';
 import ps from './Document.module.scss';
 
-import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 
 interface DocumentProps {
   title?: string;
@@ -14,12 +14,11 @@ interface DocumentProps {
 const DocumentationPage: React.FC<DocumentProps> = ({ title }) => {
   return (
     <>
-      <Header />
-      <div className={ps.content__wrapper}>
+      <Layout className={ps.content__wrapper}>
         <div className={cn(as.container)}>
           <strong>{title}</strong>
         </div>
-      </div>
+      </Layout>
       <Footer />
     </>
   );

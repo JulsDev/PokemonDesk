@@ -13,7 +13,7 @@ interface IStats {
   speed?: number;
 }
 
-interface IPokemon {
+export interface IPokemon {
   id?: number;
   name_clean?: string;
   abilities?: Array<string>;

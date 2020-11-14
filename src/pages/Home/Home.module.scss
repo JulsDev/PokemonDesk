@@ -4,13 +4,14 @@
   display: flex;
   height: 100%;
   width: 100%;
-  min-height: calc(100vh - 114px);
-  padding-top: 114px;
+  min-height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
+  overflow: hidden;
 }
 
 .content__home {
   display: flex;
+  padding-top: 120px;
 }
 
 .content__text {

@@ -1,22 +1,24 @@
 import React from 'react';
+import { navigate } from 'hookrouter';
 import cn from 'classnames';
 
 import Button, { ButtonSize } from '../../components/Button';
 import Heading from '../../components/Heading';
 import Parallax from '../../components/Parallax';
 
-import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 
 import as from '../../App.module.scss';
 import hs from './Home.module.scss';
 
+import { LinkEnum } from '../../routes';
+
 const HomePage: React.FC = () => {
   return (
-    <>
-      <Header />
-      <div className={hs.content__wrapper}>
-        <div className={cn(as.container, hs.content__home)}>
+    <div className={hs.content__wrapper}>
+      <Layout className={cn(as.container)}>
+        <div className={hs.content__home}>
           <div className={hs.content__text}>
             <Heading tag="h1" propsClassName={hs.content__title}>
               <strong>Find</strong> all your favorite <strong>Pokemon</strong>
@@ -24,7 +26,7 @@ const HomePage: React.FC = () => {
             <Heading tag="h2" propsClassName={hs.content__subtitle}>
               You can know the type of Pokemon, its strengths, disadvantages and abilities
             </Heading>
-            <Button onClick={() => console.log('Click button')} type="button" color="green" size={ButtonSize.medium}>
+            <Button onClick={() => navigate(LinkEnum.POKEDEX)} type="button" color="green" size={ButtonSize.medium}>
               See pokemons
             </Button>
           </div>
@@ -32,9 +34,9 @@ const HomePage: React.FC = () => {
             <Parallax />
           </div>
         </div>
-      </div>
+      </Layout>
       <Footer />
-    </>
+    </div>
   );
 };
 
