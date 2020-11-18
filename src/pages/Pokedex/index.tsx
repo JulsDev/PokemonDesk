@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import PokemonCard from '../../components/PokemonCard';
 import Heading from '../../components/Heading';
 
-import usePokemons, { IData } from '../../hooks/usePokemons';
+import useData, { IData } from '../../hooks/useData';
 import Layout from '../../components/Layout';
 
 interface PokedexPageProps {
@@ -18,7 +18,7 @@ interface PokedexPageProps {
 }
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
-  const { data, isLoading, isError } = usePokemons();
+  const { data, isLoading, isError } = useData('getPokemons');
 
   if (isLoading) {
     return <div>Loading...</div>;

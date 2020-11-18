@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IPokemon } from '../components/PokemonCard';
 
-import config from '../config/index';
+import req from '../utils/request';
 
 export interface IData {
   count?: number;
@@ -11,18 +11,16 @@ export interface IData {
   pokemons?: IPokemon[] | undefined;
 }
 
-const usePokemons = () => {
+const useData = (endpoint: string) => {
   const [data, setData] = useState<IData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const getPokemons = async () => {
+    const getData = async () => {
       setIsLoading(true);
-      const url = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
       try {
-        const response = await fetch(url);
-        const result = await response.json();
+        const result = await req(endpoint);
         setData(result);
       } catch (e) {
         setIsError(true);
@@ -31,8 +29,8 @@ const usePokemons = () => {
       }
     };
 
-    getPokemons();
-  }, []);
+    getData();
+  }, [endpoint]);
 
   return {
     data,
@@ -41,4 +39,4 @@ const usePokemons = () => {
   };
 };
 
-export default usePokemons;
+export default useData;
