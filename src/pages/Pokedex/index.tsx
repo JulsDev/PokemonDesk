@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import cn from 'classnames';
 
 import as from '../../App.module.scss';
@@ -18,11 +18,23 @@ interface PokedexPageProps {
 }
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
-  const { data, isLoading, isError } = useData('getPokemons');
+  const [searchValue, setSearchValue] = useState('');
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // возвращает не саму функцию, а результат ее выполнения
+  // (в отличие от useCallback)
+  // В [] будет лежать уже мемоизированный объект
+  const query = useMemo(
+    () => ({
+      name: searchValue,
+    }),
+    [searchValue],
+  );
+
+  const { data, isLoading, isError } = useData('getPokemons', query);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value as string);
+  };
 
   if (isError) {
     return <div>Something wrong!</div>;
@@ -33,10 +45,13 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
       <Layout className={ps.contentWrapper}>
         <div className={cn(as.container, ps.contentPokedex)}>
           <Heading tag="h2" propsClassName={ps.contentTitle}>
-            {data?.total} <strong>Pokemons</strong> for you to choose your favorite
+            {!isLoading && data?.total} <strong>Pokemons</strong> for you to choose your favorite
           </Heading>
+          <div>
+            <input type="text" value={searchValue} onChange={handleSearchChange} />
+          </div>
           <div className={ps.cardsWrapper}>
-            {data?.pokemons
+            {!isLoading && data?.pokemons
               ? data?.pokemons.map((item, index) => {
                   return (
                     <div key={`pokemon${index + 1}`}>
