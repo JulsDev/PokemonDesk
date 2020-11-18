@@ -12,7 +12,7 @@ export interface IData {
 }
 
 // useEffect получает объект, а он кждый раз новый => запускается цикл
-const useData = (endpoint: string, query: object) => {
+const useData = (endpoint: string, query: object, deps: any[] = []) => {
   const [data, setData] = useState<IData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -31,7 +31,7 @@ const useData = (endpoint: string, query: object) => {
     };
 
     getData();
-  }, [query]);
+  }, deps);
 
   return {
     data,

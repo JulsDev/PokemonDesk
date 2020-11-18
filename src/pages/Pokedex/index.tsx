@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 
 import as from '../../App.module.scss';
@@ -19,21 +19,16 @@ interface PokedexPageProps {
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState({});
 
-  // возвращает не саму функцию, а результат ее выполнения
-  // (в отличие от useCallback)
-  // В [] будет лежать уже мемоизированный объект
-  const query = useMemo(
-    () => ({
-      name: searchValue,
-    }),
-    [searchValue],
-  );
-
-  const { data, isLoading, isError } = useData('getPokemons', query);
+  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value as string);
+    setQuery((s) => ({
+      ...s,
+      name: event.target.value,
+    }));
   };
 
   if (isError) {
