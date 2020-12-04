@@ -33,6 +33,8 @@ export interface IPokemonCardProps {
 }
 
 const PokemonCard: React.FC<IPokemonCardProps> = (pokemon) => {
+  const typeList = pokemon.pokemon?.types;
+
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
@@ -50,7 +52,13 @@ const PokemonCard: React.FC<IPokemonCardProps> = (pokemon) => {
           </div>
         </div>
         <div className={s.labelWrap}>
-          <span className={s.label}>Fire</span>
+          {typeList?.map((item) => {
+            return (
+              <span key={item} className={s.label}>
+                {item}
+              </span>
+            );
+          })}
         </div>
       </div>
       <div className={s.pictureWrap}>

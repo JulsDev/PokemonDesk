@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 
 import as from '../../App.module.scss';
@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import PokemonCard from '../../components/PokemonCard';
 import Heading from '../../components/Heading';
 
-import usePokemons, { IData } from '../../hooks/usePokemons';
+import useData, { IData } from '../../hooks/useData';
 import Layout from '../../components/Layout';
 
 interface PokedexPageProps {
@@ -18,11 +18,18 @@ interface PokedexPageProps {
 }
 
 const PokedexPage: React.FC<PokedexPageProps> = () => {
-  const { data, isLoading, isError } = usePokemons();
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState({});
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value as string);
+    setQuery((s) => ({
+      ...s,
+      name: event.target.value,
+    }));
+  };
 
   if (isError) {
     return <div>Something wrong!</div>;
@@ -33,10 +40,13 @@ const PokedexPage: React.FC<PokedexPageProps> = () => {
       <Layout className={ps.contentWrapper}>
         <div className={cn(as.container, ps.contentPokedex)}>
           <Heading tag="h2" propsClassName={ps.contentTitle}>
-            {data?.total} <strong>Pokemons</strong> for you to choose your favorite
+            {!isLoading && data?.total} <strong>Pokemons</strong> for you to choose your favorite
           </Heading>
+          <div>
+            <input type="text" value={searchValue} onChange={handleSearchChange} />
+          </div>
           <div className={ps.cardsWrapper}>
-            {data?.pokemons
+            {!isLoading && data?.pokemons
               ? data?.pokemons.map((item, index) => {
                   return (
                     <div key={`pokemon${index + 1}`}>

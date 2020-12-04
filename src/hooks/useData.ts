@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { IPokemon } from '../components/PokemonCard';
 
+import req from '../utils/request';
+
 export interface IData {
   count?: number;
   limit?: string;
@@ -9,17 +11,17 @@ export interface IData {
   pokemons?: IPokemon[] | undefined;
 }
 
-const usePokemons = () => {
+// useEffect получает объект, а он кждый раз новый => запускается цикл
+const useData = (endpoint: string, query: object, deps: any[] = []) => {
   const [data, setData] = useState<IData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const getPokemons = async () => {
+    const getData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons?limit=9');
-        const result = await response.json();
+        const result = await req(endpoint, query);
         setData(result);
       } catch (e) {
         setIsError(true);
@@ -28,8 +30,8 @@ const usePokemons = () => {
       }
     };
 
-    getPokemons();
-  }, []);
+    getData();
+  }, deps);
 
   return {
     data,
@@ -38,4 +40,4 @@ const usePokemons = () => {
   };
 };
 
-export default usePokemons;
+export default useData;
