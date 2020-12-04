@@ -10,6 +10,7 @@ import Heading from '../../components/Heading';
 
 import useData, { IData } from '../../hooks/useData';
 import Layout from '../../components/Layout';
+import { IPokemons } from '../../interface/pokemons';
 
 interface PokedexPageProps {
   data?: IData | undefined;
@@ -17,16 +18,20 @@ interface PokedexPageProps {
   isError?: boolean;
 }
 
+interface IQuery {
+  name?: string;
+}
+
 const PokedexPage: React.FC<PokedexPageProps> = () => {
   const [searchValue, setSearchValue] = useState('');
   const [query, setQuery] = useState({});
 
-  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
+  const { data, isLoading, isError } = useData<IPokemons>('getPokemons', query, [searchValue]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value as string);
-    setQuery((s) => ({
-      ...s,
+    setQuery((state: IQuery) => ({
+      ...state,
       name: event.target.value,
     }));
   };
