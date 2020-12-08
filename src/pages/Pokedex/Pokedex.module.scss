@@ -16,6 +16,22 @@
   text-align: center;
 }
 
+.contentInputWrap {
+  width: 100%;
+  margin-bottom: 34px;
+}
+.contentInput {
+  width: 95%;
+  box-shadow: 4px 4px 16px rgba(1, 28, 64, 0.2);
+  border-radius: 40px;
+  background: #f2f2f2;
+  outline: none;
+  border: none;
+  padding: 17px 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
 .cardsWrapper {
   display: flex;
   justify-content: space-between;
